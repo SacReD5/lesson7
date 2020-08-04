@@ -1,0 +1,17 @@
+version: '2'
+services:
+  builder:
+    build: builder_folder
+    volumes:
+      - app_vol:/opt/application
+  prod:
+    build: prod_folder
+    volumes:
+      - app_vol:/opt/tomcat/webapps/:ro
+    ports:
+      - "8080:8080"
+    depends_on:
+      - builder
+volumes:
+  app_vol:
+
